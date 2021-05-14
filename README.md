@@ -15,8 +15,37 @@ Api server for all apps that need to store or read data. Server also contains re
 - creating admin user during first server start (requires user input)
 
 # Endpoints
-- /users
-- /sensors
-- /sockets
-- /weather
-- /settings
+
+## Users
+- GET /users
+- POST /users/authenticate
+- POST /users/register
+- GET /users/current
+- GET /users/{id}
+- PUT /users/{id}
+- DELETE /users/{id}
+
+## Sensors
+- GET /sensors
+- POST /sensors/set
+- GET /sensors/{name}
+- PUT /sensors/{name}
+- DELETE /sensors/{name}
+
+## Sockets
+- GET /sockets
+- POST /sockets/set
+- GET /sockets/{name}
+- DELETE /sockets/{name}
+
+## Weather
+- GET /weather
+- POST /weather/set
+- GET /weather/{name}
+- DELETE /weather/{name}
+
+## Settings
+- GET /settings
+- POST /settings/set
+- GET /settings/{name}
+- DELETE /settings/{name}
