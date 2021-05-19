@@ -21,6 +21,14 @@ async function initialize() {
     db.Sockets = require('../routes/sockets/socket.model')(sequelize);
     db.Weather = require('../routes/weather/weather.model')(sequelize);
     db.Settings = require('../routes/settings/settings.model')(sequelize);
+    db.Strings = require('../routes/strings/strings.model')(sequelize);
+
+    db.CVUser = require('../routes/cv/user/user.model')(sequelize);
+    db.CVEmployment = require('../routes/cv/employment/employment.model')(sequelize);
+    db.CVEducation = require('../routes/cv/education/education.model')(sequelize);
+    db.CVSkill = require('../routes/cv/skill/skill.model')(sequelize);
+    db.CVLink = require('../routes/cv/link/link.model')(sequelize);
+    db.CVLanguage = require('../routes/cv/language/language.model')(sequelize);
 
     // sync all models with database
     await sequelize.sync();

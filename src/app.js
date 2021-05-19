@@ -28,6 +28,13 @@ app.use('/sockets', require('./routes/sockets/sockets.controller'));
 app.use('/weather', require('./routes/weather/weather.controller'));
 app.use('/settings', require('./routes/settings/settings.controller'));
 
+app.use('/cvuser', require('./routes/cv/user/user.controller'));
+app.use('/cvemployment', require('./routes/cv/employment/employment.controller'));
+app.use('/cveducation', require('./routes/cv/education/education.controller'));
+app.use('/cvskills', require('./routes/cv/skill/skill.controller'));
+app.use('/cvlinks', require('./routes/cv/link/link.controller'));
+app.use('/cvlanguages', require('./routes/cv/language/language.controller'));
+
 const validateAdmin = async () => {
     const usersArray = await userService.getAll();
 
