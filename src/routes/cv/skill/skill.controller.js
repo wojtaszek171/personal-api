@@ -7,12 +7,19 @@ const skillService = require('./skill.service');
 const translationModel = require('../../strings/translationModel');
 
 // routes
+router.get('/', getAll);
 router.post('/set', authorize(), setSchema, set);
 router.get('/:id', getById);
 router.put('/:id', authorize(), updateSchema, update);
 router.delete('/:id', authorize(), _delete);
 
 module.exports = router;
+
+function getAll(req, res, next) {
+    skillService.getAll()
+        .then(skills => res.json(skills))
+        .catch(next);
+}
 
 function setSchema(req, res, next) {
     const schema = Joi.object({

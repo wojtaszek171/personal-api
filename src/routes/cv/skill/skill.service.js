@@ -1,11 +1,16 @@
 const db = require('_helpers/db');
 
 module.exports = {
+    getAll,
     getById,
     set,
     update,
     delete: _delete
 };
+
+async function getAll() {
+    return await db.CVSkill.findAll();
+}
 
 async function getById(id) {
     const skill = await db.CVSkill.findByPk(id);
