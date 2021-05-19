@@ -10,6 +10,7 @@ const translationModel = require('../../strings/translationModel');
 router.post('/set', authorize(), setSchema, set);
 router.get('/:id', getById);
 router.put('/:id', authorize(), updateSchema, update);
+router.delete('/:id', authorize(), _delete);
 
 module.exports = router;
 
@@ -48,5 +49,11 @@ function updateSchema(req, res, next) {
 function update(req, res, next) {
     skillService.update(req.params.id, req.body)
         .then(skill => res.json(skill))
+        .catch(next);
+}
+
+function _delete(req, res, next) {
+    skillService.delete(req.params.id)
+        .then(() => res.json({ message: 'Skill deleted successfully' }))
         .catch(next);
 }

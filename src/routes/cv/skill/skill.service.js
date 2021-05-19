@@ -3,7 +3,8 @@ const db = require('_helpers/db');
 module.exports = {
     getById,
     set,
-    update
+    update,
+    delete: _delete
 };
 
 async function getById(id) {
@@ -46,4 +47,12 @@ async function getSkill(id) {
     const skill = await db.CVSkill.findByPk(id);
     if (!skill) throw 'CVSkill not found';
     return skill;
+}
+
+async function _delete(id) {
+    const skill = await getSkill(id);
+    const { name, details } = skill.get({ plain: true });
+    await db.Strings.destroy({ where: { id: name }});
+    await db.Strings.destroy({ where: { id: details }});
+    await skill.destroy();
 }
