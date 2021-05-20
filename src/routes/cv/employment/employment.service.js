@@ -65,5 +65,5 @@ async function _delete(id) {
     await db.Strings.destroy({ where: { id: position }});
     await db.Strings.destroy({ where: { id: location }});
     await db.Strings.destroy({ where: { id: details }});
-    await skill.destroy();
+    await employment.destroy();
 }

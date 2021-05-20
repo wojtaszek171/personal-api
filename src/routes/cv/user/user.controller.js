@@ -4,22 +4,33 @@ const Joi = require('joi');
 const validateRequest = require('_middleware/validate-request');
 const authorize = require('_middleware/authorize')
 const userService = require('./user.service');
+const translationModel = require('../../strings/translationModel');
 
 // routes
+router.get('/', getAll);
 router.post('/set', authorize(), setSchema, set);
 router.get('/:id', getById);
 router.put('/:id', authorize(), updateSchema, update);
+router.delete('/:id', authorize(), _delete);
+
 
 module.exports = router;
 
+function getAll(req, res, next) {
+    userService.getAll()
+        .then(users => res.json(users))
+        .catch(next);
+}
+
 function setSchema(req, res, next) {
     const schema = Joi.object({
+        user_id: Joi.number(),
         name: Joi.string(),
-        address: Joi.string(),
+        address: translationModel,
         phone: Joi.string(),
         email: Joi.string(),
-        position: Joi.string(),
-        presentation: Joi.string(),
+        position: translationModel,
+        presentation: translationModel,
         photo: Joi.string()
     });
     validateRequest(req, next, schema);
@@ -39,12 +50,13 @@ function getById(req, res, next) {
 
 function updateSchema(req, res, next) {
     const schema = Joi.object({
-        name: Joi.string().empty(''),
-        address: Joi.string(),
+        user_id: Joi.number(),
+        name: Joi.string(),
+        address: translationModel,
         phone: Joi.string(),
         email: Joi.string(),
-        position: Joi.string(),
-        presentation: Joi.string(),
+        position: translationModel,
+        presentation: translationModel,
         photo: Joi.string()
     });
     validateRequest(req, next, schema);
@@ -53,5 +65,11 @@ function updateSchema(req, res, next) {
 function update(req, res, next) {
     userService.update(req.params.id, req.body)
         .then(user => res.json(user))
+        .catch(next);
+}
+
+function _delete(req, res, next) {
+    skillService.delete(req.params.id)
+        .then(() => res.json({ message: 'User deleted successfully' }))
         .catch(next);
 }

@@ -1,10 +1,16 @@
 const db = require('_helpers/db');
 
 module.exports = {
+    getAll,
     getById,
     set,
-    update
+    update,
+    delete: _delete
 };
+
+async function getAll() {
+    return await db.CVLink.findAll();
+}
 
 async function getById(id) {
     const link = await db.CVLink.findByPk(id);
@@ -27,4 +33,9 @@ async function getLink(id) {
     const link = await db.CVLink.findByPk(id);
     if (!link) throw 'CVLink not found';
     return link;
+}
+
+async function _delete(id) {
+    const skill = await getSkill(id);
+    await skill.destroy();
 }

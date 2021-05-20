@@ -64,11 +64,11 @@ async function getEducation(id) {
 }
 
 async function _delete(id) {
-    const skill = await getSkill(id);
-    const { school, degree, location, details } = skill.get({ plain: true });
+    const education = await getEducation(id);
+    const { school, degree, location, details } = education.get({ plain: true });
     await db.Strings.destroy({ where: { id: school }});
     await db.Strings.destroy({ where: { id: degree }});
     await db.Strings.destroy({ where: { id: location }});
     await db.Strings.destroy({ where: { id: details }});
-    await skill.destroy();
+    await education.destroy();
 }
