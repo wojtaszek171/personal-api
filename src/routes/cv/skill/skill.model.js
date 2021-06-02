@@ -15,7 +15,11 @@ function model(sequelize) {
         },
         name: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            allowNull: true,
+            references: {
+                model: 'Strings',
+                key: 'id'
+            }
         },
         rating: {
             type: DataTypes.INTEGER,
@@ -23,10 +27,24 @@ function model(sequelize) {
         },
         details: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            allowNull: true,
+            references: {
+                model: 'Strings',
+                key: 'id'
+            }
         }
     };
     const options = {
+        defaultScope: {
+            include: [{
+                model: db.Strings,
+                as: 'nameString'
+            },
+            {
+                model: db.Strings,
+                as: 'detailsString'
+            }],
+        },
         updatedAt: false,
         createdAt: false
     };

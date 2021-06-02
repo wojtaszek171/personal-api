@@ -53,5 +53,9 @@ async function initialize() {
         foreignKey: userForeignKey
     });
     // sync all models with database
+    db.Strings.hasMany(db.Strings, { foreignKey: 'id', sourceKey: 'id'});
+    db.CVSkill.belongsTo(db.Strings, { foreignKey: 'name', targetKey: 'id', as: 'nameString'});
+    db.CVSkill.belongsTo(db.Strings, { foreignKey: 'details', targetKey: 'id', as: 'detailsString'});
+
     await sequelize.sync();
 }

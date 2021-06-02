@@ -14,8 +14,6 @@ async function getAll() {
 
 async function getById(id) {
     const skill = await db.CVSkill.findByPk(id);
-    skill.name = await db.Strings.findByPk(skill.name);
-    skill.details = await db.Strings.findByPk(skill.details);
 
     if (!skill) throw 'CVSkill not found';
     return skill;
