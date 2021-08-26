@@ -24,7 +24,7 @@ function setSchema(req, res, next) {
 }
 
 function set(req, res, next) {
-    sensorService.create(req.body)
+    sensorService.set(req.body)
         .then(() => res.json({ message: 'Successfully added sensor value' }))
         .catch(next);
 }

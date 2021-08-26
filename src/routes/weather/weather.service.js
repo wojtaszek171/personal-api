@@ -4,7 +4,8 @@ module.exports = {
     getAll,
     getByName,
     set,
-    update
+    update,
+    delete: _delete
 };
 
 async function getAll() {
@@ -39,4 +40,9 @@ async function getWeather(name) {
     const weather = await db.Weather.findByPk(name);
     if (!weather) throw 'Weather not found';
     return weather;
+}
+
+async function _delete(name) {
+    const user = await getWeather(name);
+    await user.destroy();
 }

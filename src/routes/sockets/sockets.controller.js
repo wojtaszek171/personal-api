@@ -8,8 +8,8 @@ const socketService = require('./socket.service');
 // routes
 router.post('/set', authorize(), setSchema, set);
 router.get('/', getAll);
-router.get('/:name', getByKey);
-router.delete('/:id', authorize(), _delete);
+router.get('/:key', getByKey);
+router.delete('/:key', authorize(), _delete);
 
 module.exports = router;
 
@@ -43,7 +43,7 @@ function getByKey(req, res, next) {
 }
 
 function _delete(req, res, next) {
-    socketService.delete(req.params.name)
-        .then(() => res.json({ message: 'Sensor deleted successfully' }))
+    socketService.delete(req.params.key)
+        .then(() => res.json({ message: 'Socket deleted successfully' }))
         .catch(next);
 }

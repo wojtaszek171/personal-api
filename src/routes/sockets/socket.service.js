@@ -36,15 +36,16 @@ async function update(key, params) {
     await socket.save();
 }
 
-async function _delete(id) {
-    const socket = await getSocket(id);
+async function _delete(key) {
+    const socket = await getByKey(key);
+    if (!socket) throw 'Socket not found';
     await socket.destroy();
 }
 
 // helper functions
 
-async function getSocket(id) {
-    const socket = await db.Sockets.findByPk(id);
+async function getSocket(key) {
+    const socket = await db.Sockets.findByPk(key);
     if (!socket) throw 'Socket not found';
     return socket;
 }

@@ -10,6 +10,7 @@ router.post('/set', authorize(), setSchema, set);
 router.get('/', getAll);
 router.get('/:name', getByName);
 router.put('/:id', authorize(), updateSchema, update);
+router.delete('/:name', authorize(), _delete);
 
 module.exports = router;
 
@@ -24,7 +25,7 @@ function setSchema(req, res, next) {
 
 function set(req, res, next) {
     settingsService.set(req.body)
-        .then(() => res.json({ message: 'Successfully added settings value' }))
+        .then(() => res.json({ message: 'Successfully added setting value' }))
         .catch(next);
 }
 
@@ -52,5 +53,11 @@ function updateSchema(req, res, next) {
 function update(req, res, next) {
     settingsService.update(req.params.name, req.body)
         .then(settings => res.json(settings))
+        .catch(next);
+}
+
+function _delete(req, res, next) {
+    settingsService.delete(req.params.name)
+        .then(() => res.json({ message: 'Setting deleted successfully' }))
         .catch(next);
 }

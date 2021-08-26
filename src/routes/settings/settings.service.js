@@ -4,7 +4,8 @@ module.exports = {
     getAll,
     getByName,
     set,
-    update
+    update,
+    delete: _delete
 };
 
 async function getAll() {
@@ -13,7 +14,7 @@ async function getAll() {
 
 async function getByName(name) {
     const settings = await db.Settings.findOne({ where: { name } });
-    if (!settings) throw 'Settings not found';
+    if (!settings) throw 'Setting not found';
     return settings;
 }
 
@@ -37,6 +38,11 @@ async function update(name, params) {
 
 async function getSetting(name) {
     const settings = await db.Settings.findByPk(name);
-    if (!settings) throw 'Settings not found';
+    if (!settings) throw 'Setting not found';
     return settings;
+}
+
+async function _delete(name) {
+    const user = await getSetting(name);
+    await user.destroy();
 }
