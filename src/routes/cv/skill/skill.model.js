@@ -9,45 +9,36 @@ function model(sequelize) {
             autoIncrement: true,
             primaryKey: true
         },
-        user_id: {
+        userId: {
             type: DataTypes.INTEGER,
             allowNull: false
-        },
-        name: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-            references: {
-                model: 'Strings',
-                key: 'id'
-            }
         },
         rating: {
             type: DataTypes.INTEGER,
             allowNull: true
-        },
-        details: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-            references: {
-                model: 'Strings',
-                key: 'id'
-            }
         }
     };
     const options = {
         defaultScope: {
-            include: [{
-                model: db.Strings,
-                as: 'nameString'
-            },
-            {
-                model: db.Strings,
-                as: 'detailsString'
-            }],
+            include: [
+                {
+                    model: db.Strings,
+                    as: 'name'
+                },
+                {
+                    model: db.Strings,
+                    as: 'details'
+                }
+            ],
         },
         updatedAt: false,
         createdAt: false
     };
 
-    return sequelize.define('CVSkill', attributes, options);
+    const CVSkill = sequelize.define('CVSkill', attributes, options);
+
+    CVSkill.belongsTo(db.Strings, { as: 'name' });
+    CVSkill.belongsTo(db.Strings, { as: 'details' });
+
+    return CVSkill;
 }

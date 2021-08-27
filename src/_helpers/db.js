@@ -31,7 +31,7 @@ async function initialize() {
     db.CVLanguage = require('../routes/cv/language/language.model')(sequelize);
 
     const userForeignKey = {
-        name: 'user_id',
+        name: 'userId',
         allowNull: false
     };
     db.User.hasOne(db.CVUser, {
@@ -52,10 +52,6 @@ async function initialize() {
     db.User.hasMany(db.CVLanguage, {
         foreignKey: userForeignKey
     });
-    // sync all models with database
-    db.Strings.hasMany(db.Strings, { foreignKey: 'id', sourceKey: 'id'});
-    db.CVSkill.belongsTo(db.Strings, { foreignKey: 'name', targetKey: 'id', as: 'nameString'});
-    db.CVSkill.belongsTo(db.Strings, { foreignKey: 'details', targetKey: 'id', as: 'detailsString'});
 
     await sequelize.sync();
 }

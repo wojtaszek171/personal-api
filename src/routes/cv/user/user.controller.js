@@ -24,7 +24,7 @@ function getAll(req, res, next) {
 
 function setSchema(req, res, next) {
     const schema = Joi.object({
-        user_id: Joi.number(),
+        userId: Joi.number(),
         name: Joi.string(),
         address: translationModel,
         phone: Joi.string(),
@@ -50,7 +50,7 @@ function getById(req, res, next) {
 
 function updateSchema(req, res, next) {
     const schema = Joi.object({
-        user_id: Joi.number(),
+        userId: Joi.number(),
         name: Joi.string(),
         address: translationModel,
         phone: Joi.string(),

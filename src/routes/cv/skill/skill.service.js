@@ -21,28 +21,27 @@ async function getById(id) {
 
 async function set(params) {
     const { name, details } = params;
-    const { id: nameId } = (await db.Strings.create(name)).get({ plain: true });
-    const { id: detailsId } = (await db.Strings.create(details)).get({ plain: true });
+    const nameString = await db.Strings.create(name);
+    const detailsString = await db.Strings.create(details);
 
-    await db.CVSkill.create({
+    const skill = await db.CVSkill.create({
         ...params,
-        name: nameId,
-        details: detailsId
+        name: undefined,
+        details: undefined
     });
+
+    skill.setName(nameString);
+    skill.setDetails(detailsString);
 }
 
 async function update(id, params) {
-    const { name: nameStrings, details: detailsStrings } = params;
+    const { name, details } = params;
     const skill = await getSkill(id);
-    const { name, details } = skill.get({ plain: true });
-    await db.Strings.update(nameStrings, { where: { id: name }});
-    await db.Strings.update(detailsStrings, { where: { id: details }});
+    const { nameId, detailsId } = skill.get({ plain: true });
+    await db.Strings.update(name, { where: { id: nameId }});
+    await db.Strings.update(details, { where: { id: detailsId }});
 
-    Object.assign(skill, {
-        ...params,
-        name,
-        details
-    });
+    Object.assign(skill, params);
     await skill.save();
 }
 
@@ -54,8 +53,8 @@ async function getSkill(id) {
 
 async function _delete(id) {
     const skill = await getSkill(id);
-    const { name, details } = skill.get({ plain: true });
-    await db.Strings.destroy({ where: { id: name }});
-    await db.Strings.destroy({ where: { id: details }});
+    const { nameId, detailsId } = skill.get({ plain: true });
+    await db.Strings.destroy({ where: { id: nameId }});
+    await db.Strings.destroy({ where: { id: detailsId }});
     await skill.destroy();
 }

@@ -22,7 +22,7 @@ function getAll(req, res, next) {
 
 function setSchema(req, res, next) {
     const schema = Joi.object({
-        user_id: Joi.number(),
+        userId: Joi.number(),
         name: Joi.string(),
         url: Joi.string()
     });

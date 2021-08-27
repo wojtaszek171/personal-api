@@ -17,12 +17,13 @@ module.exports = router;
 
 function getAll(req, res, next) {
     educationService.getAll()
-        .then(skills => res.json(skills))
+        .then(education => res.json(education))
         .catch(next);
 }
 
 function setSchema(req, res, next) {
     const schema = Joi.object({
+        userId: Joi.number(),
         school: translationModel,
         degree: translationModel,
         location: translationModel,

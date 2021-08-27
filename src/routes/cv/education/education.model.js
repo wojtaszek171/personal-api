@@ -9,21 +9,9 @@ function model(sequelize) {
             autoIncrement: true,
             primaryKey: true
         },
-        user_id: {
+        userId: {
             type: DataTypes.INTEGER,
             allowNull: false
-        },
-        school: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        degree: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        location: {
-            type: DataTypes.STRING,
-            allowNull: true
         },
         startDate: {
             type: DataTypes.DATE,
@@ -32,16 +20,39 @@ function model(sequelize) {
         endDate: {
             type: DataTypes.DATE,
             allowNull: true
-        },
-        details: {
-            type: DataTypes.STRING,
-            allowNull: true
         }
     };
     const options = {
+        defaultScope: {
+            include: [
+                {
+                    model: db.Strings,
+                    as: 'school'
+                },
+                {
+                    model: db.Strings,
+                    as: 'degree'
+                },
+                {
+                    model: db.Strings,
+                    as: 'location'
+                },
+                {
+                    model: db.Strings,
+                    as: 'details'
+                }
+            ],
+        },
         updatedAt: false,
         createdAt: false
     };
 
-    return sequelize.define('CVEducation', attributes, options);
+    const CVEducation = sequelize.define('CVEducation', attributes, options);
+
+    CVEducation.belongsTo(db.Strings, { as: 'school' });
+    CVEducation.belongsTo(db.Strings, { as: 'degree' });
+    CVEducation.belongsTo(db.Strings, { as: 'location' });
+    CVEducation.belongsTo(db.Strings, { as: 'details' });
+
+    return CVEducation;
 }
