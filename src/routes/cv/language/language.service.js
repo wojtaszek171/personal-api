@@ -13,38 +13,30 @@ async function getAll() {
 }
 
 async function getById(id) {
-    const language = await db.CVLanguage.findByPk(id);
-    language.name = await db.Strings.findByPk(language.name);
-    language.details = await db.Strings.findByPk(language.details);
+    const language = await getLanguage(id);
 
-    if (!language) throw 'CVLanguage not found';
     return language;
 }
 
 async function set(params) {
     const { name, details } = params;
-    const { id: nameId } = (await db.Strings.create(name)).get({ plain: true });
-    const { id: detailsId } = (await db.Strings.create(details)).get({ plain: true });
+    const nameString = await db.Strings.create(name);
+    const detailsString = await db.Strings.create(details);
 
-    await db.CVLanguage.create({
-        ...params,
-        name: nameId,
-        details: detailsId
-    });
+    const language = await db.CVLanguage.create(params);
+
+    language.setName(nameString);
+    language.setDetails(detailsString);
 }
 
 async function update(id, params) {
-    const { name: nameStrings, details: detailsStrings } = params;
+    const { name, details } = params;
     const language = await getLanguage(id);
-    const { name, details } = language.get({ plain: true });
-    await db.Strings.update(nameStrings, { where: { id: name }});
-    await db.Strings.update(detailsStrings, { where: { id: details }});
+    const { nameId, detailsId } = language.get({ plain: true });
+    await db.Strings.update(name, { where: { id: nameId }});
+    await db.Strings.update(details, { where: { id: detailsId }});
 
-    Object.assign(language, {
-        ...params,
-        name,
-        details
-    });
+    Object.assign(language, params);
     await language.save();
 }
 
@@ -56,8 +48,8 @@ async function getLanguage(id) {
 
 async function _delete(id) {
     const language = await getLanguage(id);
-    const { name, details } = language.get({ plain: true });
-    await db.Strings.destroy({ where: { id: name }});
-    await db.Strings.destroy({ where: { id: details }});
+    const { nameId, detailsId } = language.get({ plain: true });
+    await db.Strings.destroy({ where: { id: nameId }});
+    await db.Strings.destroy({ where: { id: detailsId }});
     await language.destroy();
 }

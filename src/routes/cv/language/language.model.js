@@ -13,23 +13,32 @@ function model(sequelize) {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
         rating: {
             type: DataTypes.INTEGER,
-            allowNull: true
-        },
-        details: {
-            type: DataTypes.STRING,
             allowNull: true
         }
     };
     const options = {
+        defaultScope: {
+            include: [
+                {
+                    model: db.Strings,
+                    as: 'name'
+                },
+                {
+                    model: db.Strings,
+                    as: 'details'
+                }
+            ],
+        },
         updatedAt: false,
         createdAt: false
     };
 
-    return sequelize.define('CVLanguage', attributes, options);
+    const CVLanguage = sequelize.define('CVLanguage', attributes, options);
+
+    CVLanguage.belongsTo(db.Strings, { as: 'name' });
+    CVLanguage.belongsTo(db.Strings, { as: 'details' });
+
+    return CVLanguage;
 }
