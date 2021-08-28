@@ -42,13 +42,7 @@ async function update(id, params) {
     await db.Strings.update(location, { where: { id: locationId }});
     await db.Strings.update(details, { where: { id: detailsId }});
 
-    Object.assign(education, {
-        ...params,
-        school,
-        degree,
-        location,
-        details
-    });
+    Object.assign(education, params);
     await education.save();
 }
 

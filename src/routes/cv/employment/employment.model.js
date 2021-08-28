@@ -17,14 +17,6 @@ function model(sequelize) {
             type: DataTypes.STRING,
             allowNull: true
         },
-        position: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        location: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
         startDate: {
             type: DataTypes.DATE,
             allowNull: true
@@ -32,16 +24,35 @@ function model(sequelize) {
         endDate: {
             type: DataTypes.DATE,
             allowNull: true
-        },
-        details: {
-            type: DataTypes.STRING,
-            allowNull: true
         }
     };
     const options = {
+        defaultScope: {
+            include: [
+                {
+                    model: db.Strings,
+                    as: 'position'
+                },
+                {
+                    model: db.Strings,
+                    as: 'location'
+                },
+                {
+                    model: db.Strings,
+                    as: 'details'
+                }
+            ],
+        },
         updatedAt: false,
         createdAt: false
     };
 
-    return sequelize.define('CVEmployment', attributes, options);
+    const CVEmployment = sequelize.define('CVEmployment', attributes, options);
+
+    CVEmployment.belongsTo(db.Strings, { as: 'position' });
+    CVEmployment.belongsTo(db.Strings, { as: 'location' });
+    CVEmployment.belongsTo(db.Strings, { as: 'details' });
+
+
+    return CVEmployment;
 }
