@@ -13,43 +13,33 @@ async function getAll() {
 }
 
 async function getById(id) {
-    const user = await db.CVUser.findByPk(id);
-    user.address = await db.Strings.findByPk(user.address);
-    user.position = await db.Strings.findByPk(user.position);
-    user.presentation = await db.Strings.findByPk(user.presentation);
+    const user = await getUser(id);
 
-    if (!user) throw 'CVUser not found';
     return user;
 }
 
 async function set(params) {
     const { address, position, presentation } = params;
-    const { id: addressId } = (await db.Strings.create(address)).get({ plain: true });
-    const { id: positionId } = (await db.Strings.create(position)).get({ plain: true });
-    const { id: presentationId } = (await db.Strings.create(presentation)).get({ plain: true });
+    const addressString = await db.Strings.create(address);
+    const positionString = await db.Strings.create(position);
+    const presentationString = await db.Strings.create(presentation);
 
-    await db.CVUser.create({
-        ...params,
-        address: addressId,
-        position: positionId,
-        presentation: presentationId
-    });
+    const user = await db.CVUser.create(params);
+
+    user.setAddress(addressString);
+    user.setPosition(positionString);
+    user.setPresentation(presentationString);
 }
 
 async function update(id, params) {
-    const { address: addressStrings, position: positionStrings, presentation: presentationStrings } = params;
+    const { address, position, presentation } = params;
     const user = await getUser(id);
-    const { address, position, presentation } = user.get({ plain: true });
-    await db.Strings.update(addressStrings, { where: { id: address }});
-    await db.Strings.update(positionStrings, { where: { id: position }});
-    await db.Strings.update(presentationStrings, { where: { id: presentation }});
+    const { addressId, positionId, presentationId } = user.get({ plain: true });
+    await db.Strings.update(address, { where: { id: addressId }});
+    await db.Strings.update(position, { where: { id: positionId }});
+    await db.Strings.update(presentation, { where: { id: presentationId }});
 
-    Object.assign(user, {
-        ...params,
-        address,
-        position,
-        presentation
-    });
+    Object.assign(user, params);
     await user.save();
 }
 
@@ -61,9 +51,9 @@ async function getUser(id) {
 
 async function _delete(id) {
     const user = await getUser(id);
-    const { address, position, presentation } = user.get({ plain: true });
-    await db.Strings.destroy({ where: { id: address }});
-    await db.Strings.destroy({ where: { id: position }});
-    await db.Strings.destroy({ where: { id: presentation }});
+    const { addressId, positionId, presentationId } = user.get({ plain: true });
+    await db.Strings.destroy({ where: { id: addressId }});
+    await db.Strings.destroy({ where: { id: positionId }});
+    await db.Strings.destroy({ where: { id: presentationId }});
     await user.destroy();
 }

@@ -17,10 +17,6 @@ function model(sequelize) {
             type: DataTypes.STRING,
             allowNull: true
         },
-        address: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
         phone: {
             type: DataTypes.STRING,
             allowNull: true
@@ -29,20 +25,37 @@ function model(sequelize) {
             type: DataTypes.STRING,
             allowNull: true
         },
-        position: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        presentation: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
         photo: {
             type: DataTypes.BLOB,
             allowNull: true
         }
     };
-    const options = {};
+    const options = {
+        defaultScope: {
+            include: [
+                {
+                    model: db.Strings,
+                    as: 'address'
+                },
+                {
+                    model: db.Strings,
+                    as: 'position'
+                },
+                {
+                    model: db.Strings,
+                    as: 'presentation'
+                }
+            ],
+        },
+        updatedAt: false,
+        createdAt: false
+    };
 
-    return sequelize.define('CVUser', attributes, options);
+    const CVUser = sequelize.define('CVUser', attributes, options);
+
+    CVUser.belongsTo(db.Strings, { as: 'address' });
+    CVUser.belongsTo(db.Strings, { as: 'position' });
+    CVUser.belongsTo(db.Strings, { as: 'presentation' });
+
+    return CVUser;
 }

@@ -36,6 +36,6 @@ async function getLink(id) {
 }
 
 async function _delete(id) {
-    const skill = await getSkill(id);
+    const skill = await getLink(id);
     await skill.destroy();
 }

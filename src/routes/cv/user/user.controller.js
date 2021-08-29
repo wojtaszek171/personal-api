@@ -69,7 +69,7 @@ function update(req, res, next) {
 }
 
 function _delete(req, res, next) {
-    skillService.delete(req.params.id)
+    userService.delete(req.params.id)
         .then(() => res.json({ message: 'User deleted successfully' }))
         .catch(next);
 }

@@ -1,0 +1,1650 @@
+{
+	"info": {
+		"_postman_id": "3f22d285-8823-4827-81c0-c5ad0697b4ff",
+		"name": "PersonalApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "/users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/users",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users/authenticate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"\",\r\n    \"password\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/users/authenticate",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Paweł\",\r\n    \"lastName\": \"Wojtaszko\",\r\n    \"username\": \"wojtaszek171\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/users/register",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users/current",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/users/current",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/users/{id}",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Paweł\",\r\n    \"lastName\": \"Wojtaszko\",\r\n    \"username\": \"wojtaszek171\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "javascript"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/users/{id}",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"{id}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Paweł",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "javascript"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/users/{id}",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sensors",
+			"item": [
+				{
+					"name": "/sensors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/sensors",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"sensors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sensors/set",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testSensor\",\r\n    \"value\": 121\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/sensors/set",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"sensors",
+								"set"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sensors/{name}",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/sensors/{name}",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"sensors",
+								"{name}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sensors/{name}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testSensor\",\r\n    \"value\": 122\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/sensors/{name}",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"sensors",
+								"{name}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sensors/{name}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/sensors/{name}",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"sensors",
+								"{name}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sockets",
+			"item": [
+				{
+					"name": "/sockets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/sockets",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"sockets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sockets/set",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\": \"socket_test\",\r\n    \"enabled\": true,\r\n    \"start\": \"08:00\",\r\n    \"stop\": \"20:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/sockets/set",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"sockets",
+								"set"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sockets/{key}",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/sockets/{key}",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"sockets",
+								"{key}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/sockets/{key}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/sockets/socket_test",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"sockets",
+								"socket_test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Weather",
+			"item": [
+				{
+					"name": "/weather",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/weather",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"weather"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/weather/set",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testWeather\",\r\n    \"value\": {\"test\": \"test\"}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/weather/set",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"weather",
+								"set"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/weather/{name}",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/weather/{name}",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"weather",
+								"{name}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/weather/{name}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/weather/{name}",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"weather",
+								"{name}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"item": [
+				{
+					"name": "/settings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/settings",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/settings/set",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testSettings\",\r\n    \"value\": \"json\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/settings/set",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"settings",
+								"set"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/settings/{name}",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/settings/{name}",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"settings",
+								"{name}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/settings/{name}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/settings/testSettings",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"settings",
+								"testSettings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CV",
+			"item": [
+				{
+					"name": "skills",
+					"item": [
+						{
+							"name": "/cvskills",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvskills",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvskills"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvskills/{id}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": {\r\n      \"pl_pl\": \"polski\",\r\n      \"en_us\": \"polish\"\r\n   }\r\n}"
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvskills/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvskills",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvskills/set",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"userId\": 1,\r\n   \"name\": {\r\n      \"en_us\": \"polish\",\r\n      \"pl_pl\": \"polski\"\r\n   },\r\n   \"details\": {\r\n      \"en_us\": \"details\",\r\n      \"pl_pl\": \"szczegóły\"\r\n   },\r\n   \"rating\": 4\r\n}"
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvskills/set",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvskills",
+										"set"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvskills/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"rating\": 4,\r\n    \"name\": {\r\n        \"pl_pl\": \"polski\",\r\n        \"en_us\": \"polish\"\r\n    }\r\n}"
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvskills/1",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvskills",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvskills/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvskills/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvskills",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "education",
+					"item": [
+						{
+							"name": "/cveducation",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cveducation",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cveducation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cveducation/{id}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": {\r\n      \"pl_pl\": \"polski\",\r\n      \"en_us\": \"polish\"\r\n   }\r\n}"
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cveducation/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cveducation",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cveducation/set",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": 1,\r\n    \"school\": {\r\n        \"en_us\": \"Lublin University of Technology\",\r\n        \"pl_pl\": \"Politechnika Lubelska\"\r\n    },\r\n    \"degree\": {\r\n        \"en_us\": \"Master's degree\",\r\n        \"pl_pl\": \"Magister\"\r\n    },\r\n    \"location\": {\r\n        \"en_us\": \"Lublin, Poland\",\r\n        \"pl_pl\": \"Lublin, Polska\"\r\n    },\r\n    \"startDate\": \"1412196522000\",\r\n    \"endDate\": \"1564692522000\",\r\n    \"details\": {\r\n        \"en_us\": \"cool university\",\r\n        \"pl_pl\": \"spoko uczelnia\"\r\n    }\r\n}"
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cveducation/set",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cveducation",
+										"set"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cveducation/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"school\": {\r\n        \"en_us\": \"Lublin University of Technology\",\r\n        \"pl_pl\": \"Politechnika Lubelska\"\r\n    },\r\n    \"degree\": {\r\n        \"en_us\": \"Master's degree\",\r\n        \"pl_pl\": \"Magister\"\r\n    },\r\n    \"location\": {\r\n        \"en_us\": \"Lublin, Poland\",\r\n        \"pl_pl\": \"Lublin, Polska\"\r\n    },\r\n    \"startDate\": \"1412196522000\",\r\n    \"endDate\": \"1564692522000\",\r\n    \"details\": {\r\n        \"en_us\": \"cool university\",\r\n        \"pl_pl\": \"spoko uczelnia\"\r\n    }\r\n}"
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cveducation/1",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cveducation",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cveducation/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cveducation/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cveducation",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "employment",
+					"item": [
+						{
+							"name": "/cvemployment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvemployment",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvemployment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvemployment/{id}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": {\r\n      \"pl_pl\": \"polski\",\r\n      \"en_us\": \"polish\"\r\n   }\r\n}"
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvemployment/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvemployment",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvemployment/set",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": 1,\r\n    \"company\": \"MicroStrategy\",\r\n    \"position\": {\r\n        \"en_us\": \"Software Engineer\",\r\n        \"pl_pl\": \"Specjalista ds. oprogramowania\"\r\n    },\r\n    \"location\": {\r\n        \"en_us\": \"Warsaw, Poland\",\r\n        \"pl_pl\": \"Warszawa, Polska\"\r\n    },\r\n    \"startDate\": \"1412196522000\",\r\n    \"endDate\": \"1564692522000\",\r\n    \"details\": {\r\n        \"en_us\": \"cool job\",\r\n        \"pl_pl\": \"spoko praca\"\r\n    }\r\n}"
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvemployment/set",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvemployment",
+										"set"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvemployment/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": 1,\r\n    \"company\": \"MicroStrategy Poland\",\r\n    \"position\": {\r\n        \"en_us\": \"Software Engineer\",\r\n        \"pl_pl\": \"Specjalista ds. oprogramowania\"\r\n    },\r\n    \"location\": {\r\n        \"en_us\": \"Warsaw, Poland\",\r\n        \"pl_pl\": \"Warszawa, Polska\"\r\n    },\r\n    \"startDate\": \"1412196522000\",\r\n    \"endDate\": \"1564692522000\",\r\n    \"details\": {\r\n        \"en_us\": \"cool job\",\r\n        \"pl_pl\": \"spoko praca\"\r\n    }\r\n}"
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvemployment/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvemployment",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvemployment/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvemployment/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvemployment",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "languages",
+					"item": [
+						{
+							"name": "/cvlanguages",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvlanguages",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvlanguages"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvlanguages/{id}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": {\r\n      \"pl_pl\": \"polski\",\r\n      \"en_us\": \"polish\"\r\n   }\r\n}"
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvlanguages/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvlanguages",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvlanguages/set",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": 1,\r\n    \"name\": {\r\n        \"en_us\": \"English\",\r\n        \"pl_pl\": \"Angielski\"\r\n    },\r\n    \"rating\": 3,\r\n    \"details\": {\r\n        \"en_us\": \"fair enough\",\r\n        \"pl_pl\": \"może być\"\r\n    }\r\n}"
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvlanguages/set",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvlanguages",
+										"set"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvlanguages/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": 1,\r\n    \"name\": {\r\n        \"en_us\": \"English\",\r\n        \"pl_pl\": \"Angielski\"\r\n    },\r\n    \"rating\": 3,\r\n    \"details\": {\r\n        \"en_us\": \"fair enough\",\r\n        \"pl_pl\": \"może być\"\r\n    }\r\n}"
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvlanguages/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvlanguages",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvlanguages/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvlanguages/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvlanguages",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "links",
+					"item": [
+						{
+							"name": "/cvlinks",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/settings",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"settings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvlinks/set",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": 1,\r\n    \"name\": \"github\",\r\n    \"url\": \"https://github.com/wojtaszek171\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvlinks/set",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvlinks",
+										"set"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvlinks/{id}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvlinks/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvlinks",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvlinks/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"github.com\",\r\n    \"url\": \"https://github.com/wojtaszek171\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvlinks/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvlinks",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvlinks/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvlinks/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvlinks",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "/cvuser",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvuser",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvuser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvuser/{id}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvuser/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvuser",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvuser/set",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": 1,\r\n    \"name\": \"Paweł Wojtaszko\",\r\n    \"address\": {\r\n        \"en_us\": \"Lublin, Poland\",\r\n        \"pl_pl\": \"Lublin, Polska\"\r\n    },\r\n    \"phone\": \"+48 123 456 789\",\r\n    \"email\": \"pawelwojtaszko@o2.pl\",\r\n    \"position\": {\r\n        \"en_us\": \"Software Engineer\",\r\n        \"pl_pl\": \"Inżynier ds. oprogramowania\"\r\n    },\r\n    \"presentation\": {\r\n        \"en_us\": \"I like programming.\",\r\n        \"pl_pl\": \"Lubię programować\"\r\n    }\r\n}"
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvuser/set",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvuser",
+										"set"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvuser/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Paweł Wojtaszko\",\r\n    \"address\": {\r\n        \"en_us\": \"Lublin, Poland\",\r\n        \"pl_pl\": \"Lublin, Polska\"\r\n    },\r\n    \"phone\": \"+48 123 456 789\",\r\n    \"email\": \"pawelwojtaszko@o2.pl\",\r\n    \"position\": {\r\n        \"en_us\": \"Software Engineer\",\r\n        \"pl_pl\": \"Inżynier ds. oprogramowania\"\r\n    },\r\n    \"presentation\": {\r\n        \"en_us\": \"I really like programming.\",\r\n        \"pl_pl\": \"Bardzo lubię programować.\"\r\n    }\r\n}"
+								},
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvuser/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvuser",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/cvuser/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://pwojtaszko.ddns.net/api/cvuser/{id}",
+									"protocol": "https",
+									"host": [
+										"pwojtaszko",
+										"ddns",
+										"net"
+									],
+									"path": [
+										"api",
+										"cvuser",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMDI3NzM0MywiZXhwIjoxNjMwMjc4NTQzfQ._BnVxOvzz7g5G-Kipe5tloRokJR05nZevMNqTicRkhk",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "id"
+		}
+	]
+}
