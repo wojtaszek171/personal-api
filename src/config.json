@@ -1,0 +1,11 @@
+{
+    "database": {
+        "host": "localhost",
+        "port": 8393,
+        "user": "root",
+        "password": "",
+        "database": "home"
+    },
+    "secret": "",
+    "weather_api": ""
+}
