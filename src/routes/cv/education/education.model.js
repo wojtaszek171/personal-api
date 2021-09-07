@@ -9,7 +9,7 @@ function model(sequelize) {
             autoIncrement: true,
             primaryKey: true
         },
-        userId: {
+        cvId: {
             type: DataTypes.INTEGER,
             allowNull: false
         },

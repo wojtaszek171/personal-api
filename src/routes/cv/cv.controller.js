@@ -3,64 +3,67 @@ const router = express.Router();
 const Joi = require('joi');
 const validateRequest = require('_middleware/validate-request');
 const authorize = require('_middleware/authorize')
-const languageService = require('./language.service');
-const translationModel = require('../../strings/translationModel');
+const cvService = require('./cv.service');
 
 // routes
 router.get('/', getAll);
+router.get('/owned', authorize(), getAllOwned);
 router.post('/set', authorize(), setSchema, set);
 router.get('/:id', getById);
 router.put('/:id', authorize(), updateSchema, update);
 router.delete('/:id', authorize(), _delete);
 
+
 module.exports = router;
 
 function getAll(req, res, next) {
-    languageService.getAll()
-        .then(languages => res.json(languages))
+    cvService.getAll()
+        .then(cvs => res.json(cvs))
+        .catch(next);
+}
+
+function getAllOwned(req, res, next) {
+    cvService.getAllOwned(req.user.id)
+        .then(cvs => res.json(cvs))
         .catch(next);
 }
 
 function setSchema(req, res, next) {
     const schema = Joi.object({
-        cvId: Joi.number(),
-        name: translationModel,
-        rating: Joi.number(),
-        details: translationModel
+        userId: Joi.number().required(),
+        isPublished: Joi.boolean(),
     });
     validateRequest(req, next, schema);
 }
 
 function set(req, res, next) {
-    languageService.set(req.body)
-        .then(() => res.json({ message: 'Successfully added language value' }))
+    cvService.set(req.body)
+        .then(() => res.json({ message: 'Successfully added cv' }))
         .catch(next);
 }
 
 function getById(req, res, next) {
-    languageService.getById(req.params.id)
-        .then(language => res.json(language))
+    cvService.getById(req.params.id)
+        .then(cv => res.json(cv))
         .catch(next);
 }
 
 function updateSchema(req, res, next) {
     const schema = Joi.object({
         cvId: Joi.number(),
-        name: translationModel,
-        rating: Joi.number(),
-        details: translationModel
+        isPublished: Joi.boolean(),
     });
     validateRequest(req, next, schema);
 }
 
 function update(req, res, next) {
-    languageService.update(req.params.id, req.body)
-        .then(language => res.json(language))
+    cvService.update(req.params.id, req.body)
+        .then(cv => res.json(cv))
         .catch(next);
 }
 
 function _delete(req, res, next) {
-    languageService.delete(req.params.id)
-        .then(() => res.json({ message: 'Language deleted successfully' }))
+    cvService.delete(req.params.id)
+        .then(() => res.json({ message: 'CV deleted successfully' }))
         .catch(next);
 }

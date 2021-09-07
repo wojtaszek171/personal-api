@@ -805,7 +805,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n   \"userId\": 1,\r\n   \"name\": {\r\n      \"en_us\": \"polish\",\r\n      \"pl_pl\": \"polski\"\r\n   },\r\n   \"details\": {\r\n      \"en_us\": \"details\",\r\n      \"pl_pl\": \"szczegóły\"\r\n   },\r\n   \"rating\": 4\r\n}"
+									"raw": "{\r\n   \"cvId\": 1,\r\n   \"name\": {\r\n      \"en_us\": \"polish\",\r\n      \"pl_pl\": \"polski\"\r\n   },\r\n   \"details\": {\r\n      \"en_us\": \"details\",\r\n      \"pl_pl\": \"szczegóły\"\r\n   },\r\n   \"rating\": 4\r\n}"
 								},
 								"url": {
 									"raw": "https://pwojtaszko.ddns.net/api/cvskills/set",
@@ -949,7 +949,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"userId\": 1,\r\n    \"school\": {\r\n        \"en_us\": \"Lublin University of Technology\",\r\n        \"pl_pl\": \"Politechnika Lubelska\"\r\n    },\r\n    \"degree\": {\r\n        \"en_us\": \"Master's degree\",\r\n        \"pl_pl\": \"Magister\"\r\n    },\r\n    \"location\": {\r\n        \"en_us\": \"Lublin, Poland\",\r\n        \"pl_pl\": \"Lublin, Polska\"\r\n    },\r\n    \"startDate\": \"1412196522000\",\r\n    \"endDate\": \"1564692522000\",\r\n    \"details\": {\r\n        \"en_us\": \"cool university\",\r\n        \"pl_pl\": \"spoko uczelnia\"\r\n    }\r\n}"
+									"raw": "{\r\n    \"cvId\": 1,\r\n    \"school\": {\r\n        \"en_us\": \"Lublin University of Technology\",\r\n        \"pl_pl\": \"Politechnika Lubelska\"\r\n    },\r\n    \"degree\": {\r\n        \"en_us\": \"Master's degree\",\r\n        \"pl_pl\": \"Magister\"\r\n    },\r\n    \"location\": {\r\n        \"en_us\": \"Lublin, Poland\",\r\n        \"pl_pl\": \"Lublin, Polska\"\r\n    },\r\n    \"startDate\": \"1412196522000\",\r\n    \"endDate\": \"1564692522000\",\r\n    \"details\": {\r\n        \"en_us\": \"cool university\",\r\n        \"pl_pl\": \"spoko uczelnia\"\r\n    }\r\n}"
 								},
 								"url": {
 									"raw": "https://pwojtaszko.ddns.net/api/cveducation/set",
@@ -1093,7 +1093,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"userId\": 1,\r\n    \"company\": \"MicroStrategy\",\r\n    \"position\": {\r\n        \"en_us\": \"Software Engineer\",\r\n        \"pl_pl\": \"Specjalista ds. oprogramowania\"\r\n    },\r\n    \"location\": {\r\n        \"en_us\": \"Warsaw, Poland\",\r\n        \"pl_pl\": \"Warszawa, Polska\"\r\n    },\r\n    \"startDate\": \"1412196522000\",\r\n    \"endDate\": \"1564692522000\",\r\n    \"details\": {\r\n        \"en_us\": \"cool job\",\r\n        \"pl_pl\": \"spoko praca\"\r\n    }\r\n}"
+									"raw": "{\r\n    \"cvId\": 1,\r\n    \"company\": \"MicroStrategy\",\r\n    \"position\": {\r\n        \"en_us\": \"Software Engineer\",\r\n        \"pl_pl\": \"Specjalista ds. oprogramowania\"\r\n    },\r\n    \"location\": {\r\n        \"en_us\": \"Warsaw, Poland\",\r\n        \"pl_pl\": \"Warszawa, Polska\"\r\n    },\r\n    \"startDate\": \"1412196522000\",\r\n    \"endDate\": \"1564692522000\",\r\n    \"details\": {\r\n        \"en_us\": \"cool job\",\r\n        \"pl_pl\": \"spoko praca\"\r\n    }\r\n}"
 								},
 								"url": {
 									"raw": "https://pwojtaszko.ddns.net/api/cvemployment/set",
@@ -1124,7 +1124,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"userId\": 1,\r\n    \"company\": \"MicroStrategy Poland\",\r\n    \"position\": {\r\n        \"en_us\": \"Software Engineer\",\r\n        \"pl_pl\": \"Specjalista ds. oprogramowania\"\r\n    },\r\n    \"location\": {\r\n        \"en_us\": \"Warsaw, Poland\",\r\n        \"pl_pl\": \"Warszawa, Polska\"\r\n    },\r\n    \"startDate\": \"1412196522000\",\r\n    \"endDate\": \"1564692522000\",\r\n    \"details\": {\r\n        \"en_us\": \"cool job\",\r\n        \"pl_pl\": \"spoko praca\"\r\n    }\r\n}"
+									"raw": "{\r\n    \"cvId\": 1,\r\n    \"company\": \"MicroStrategy Poland\",\r\n    \"position\": {\r\n        \"en_us\": \"Software Engineer\",\r\n        \"pl_pl\": \"Specjalista ds. oprogramowania\"\r\n    },\r\n    \"location\": {\r\n        \"en_us\": \"Warsaw, Poland\",\r\n        \"pl_pl\": \"Warszawa, Polska\"\r\n    },\r\n    \"startDate\": \"1412196522000\",\r\n    \"endDate\": \"1564692522000\",\r\n    \"details\": {\r\n        \"en_us\": \"very cool job\",\r\n        \"pl_pl\": \"spoko praca\"\r\n    }\r\n}"
 								},
 								"url": {
 									"raw": "https://pwojtaszko.ddns.net/api/cvemployment/{id}",
@@ -1237,7 +1237,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"userId\": 1,\r\n    \"name\": {\r\n        \"en_us\": \"English\",\r\n        \"pl_pl\": \"Angielski\"\r\n    },\r\n    \"rating\": 3,\r\n    \"details\": {\r\n        \"en_us\": \"fair enough\",\r\n        \"pl_pl\": \"może być\"\r\n    }\r\n}"
+									"raw": "{\r\n    \"cvId\": 1,\r\n    \"name\": {\r\n        \"en_us\": \"English\",\r\n        \"pl_pl\": \"Angielski\"\r\n    },\r\n    \"rating\": 3,\r\n    \"details\": {\r\n        \"en_us\": \"fair enough\",\r\n        \"pl_pl\": \"może być\"\r\n    }\r\n}"
 								},
 								"url": {
 									"raw": "https://pwojtaszko.ddns.net/api/cvlanguages/set",
@@ -1268,7 +1268,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"userId\": 1,\r\n    \"name\": {\r\n        \"en_us\": \"English\",\r\n        \"pl_pl\": \"Angielski\"\r\n    },\r\n    \"rating\": 3,\r\n    \"details\": {\r\n        \"en_us\": \"fair enough\",\r\n        \"pl_pl\": \"może być\"\r\n    }\r\n}"
+									"raw": "{\r\n    \"cvId\": 1,\r\n    \"name\": {\r\n        \"en_us\": \"English\",\r\n        \"pl_pl\": \"Angielski\"\r\n    },\r\n    \"rating\": 3,\r\n    \"details\": {\r\n        \"en_us\": \"fair enough\",\r\n        \"pl_pl\": \"może być\"\r\n    }\r\n}"
 								},
 								"url": {
 									"raw": "https://pwojtaszko.ddns.net/api/cvlanguages/{id}",
@@ -1342,7 +1342,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"userId\": 1,\r\n    \"name\": \"github\",\r\n    \"url\": \"https://github.com/wojtaszek171\"\r\n}",
+									"raw": "{\r\n    \"cvId\": 1,\r\n    \"name\": \"LinkedIn\",\r\n    \"url\": \"https://www.linkedin.com/in/pawelwojtaszko/\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1534,7 +1534,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"userId\": 1,\r\n    \"name\": \"Paweł Wojtaszko\",\r\n    \"address\": {\r\n        \"en_us\": \"Lublin, Poland\",\r\n        \"pl_pl\": \"Lublin, Polska\"\r\n    },\r\n    \"phone\": \"+48 123 456 789\",\r\n    \"email\": \"pawelwojtaszko@o2.pl\",\r\n    \"position\": {\r\n        \"en_us\": \"Software Engineer\",\r\n        \"pl_pl\": \"Inżynier ds. oprogramowania\"\r\n    },\r\n    \"presentation\": {\r\n        \"en_us\": \"I like programming.\",\r\n        \"pl_pl\": \"Lubię programować\"\r\n    }\r\n}"
+									"raw": "{\r\n    \"cvId\": 1,\r\n    \"name\": \"Paweł Wojtaszko\",\r\n    \"address\": {\r\n        \"en_us\": \"Lublin, Poland\",\r\n        \"pl_pl\": \"Lublin, Polska\"\r\n    },\r\n    \"phone\": \"+48 123 456 789\",\r\n    \"email\": \"pawelwojtaszko@o2.pl\",\r\n    \"position\": {\r\n        \"en_us\": \"Software Engineer\",\r\n        \"pl_pl\": \"Inżynier ds. oprogramowania\"\r\n    },\r\n    \"presentation\": {\r\n        \"en_us\": \"I like programming.\",\r\n        \"pl_pl\": \"Lubię programować\"\r\n    }\r\n}"
 								},
 								"url": {
 									"raw": "https://pwojtaszko.ddns.net/api/cvuser/set",
@@ -1568,7 +1568,7 @@
 									"raw": "{\r\n    \"name\": \"Paweł Wojtaszko\",\r\n    \"address\": {\r\n        \"en_us\": \"Lublin, Poland\",\r\n        \"pl_pl\": \"Lublin, Polska\"\r\n    },\r\n    \"phone\": \"+48 123 456 789\",\r\n    \"email\": \"pawelwojtaszko@o2.pl\",\r\n    \"position\": {\r\n        \"en_us\": \"Software Engineer\",\r\n        \"pl_pl\": \"Inżynier ds. oprogramowania\"\r\n    },\r\n    \"presentation\": {\r\n        \"en_us\": \"I really like programming.\",\r\n        \"pl_pl\": \"Bardzo lubię programować.\"\r\n    }\r\n}"
 								},
 								"url": {
-									"raw": "https://pwojtaszko.ddns.net/api/cvuser/{id}",
+									"raw": "https://pwojtaszko.ddns.net/api/cvuser/1",
 									"protocol": "https",
 									"host": [
 										"pwojtaszko",
@@ -1578,7 +1578,7 @@
 									"path": [
 										"api",
 										"cvuser",
-										"{id}"
+										"1"
 									]
 								}
 							},
@@ -1607,6 +1607,167 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "/cv",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/cv",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"cv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cv/owned",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/cv/owned",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"cv",
+								"owned"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cv/{id}",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": {\r\n      \"pl_pl\": \"polski\",\r\n      \"en_us\": \"polish\"\r\n   }\r\n}"
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/cv/{id}",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"cv",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cv/set",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 1,\r\n    \"isPublished\": false\r\n}"
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/cv/set",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"cv",
+								"set"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cv/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 1,\r\n    \"isPublished\": false\r\n}"
+						},
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/cv/{id}",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"cv",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cv/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://pwojtaszko.ddns.net/api/cv/{id}",
+							"protocol": "https",
+							"host": [
+								"pwojtaszko",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"cv",
+								"{id}"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -1616,7 +1777,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMDI3NzM0MywiZXhwIjoxNjMwMjc4NTQzfQ._BnVxOvzz7g5G-Kipe5tloRokJR05nZevMNqTicRkhk",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzMTA0NTY1NCwiZXhwIjoxNjMxMDQ2ODU0fQ.GhvdhinVeF3kkbQBzJWx4iNDje4T2c7_3-KVmBgbVnU",
 				"type": "string"
 			}
 		]

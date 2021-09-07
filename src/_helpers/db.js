@@ -23,6 +23,7 @@ async function initialize() {
     db.Settings = require('../routes/settings/settings.model')(sequelize);
     db.Strings = require('../routes/strings/strings.model')(sequelize);
 
+    db.CV = require('../routes/cv/cv.model')(sequelize);
     db.CVUser = require('../routes/cv/user/user.model')(sequelize);
     db.CVEmployment = require('../routes/cv/employment/employment.model')(sequelize);
     db.CVEducation = require('../routes/cv/education/education.model')(sequelize);
@@ -30,27 +31,32 @@ async function initialize() {
     db.CVLink = require('../routes/cv/link/link.model')(sequelize);
     db.CVLanguage = require('../routes/cv/language/language.model')(sequelize);
 
-    const userForeignKey = {
-        name: 'userId',
+    const cvForeignKey = {
+        name: 'cvId',
         allowNull: false
     };
-    db.User.hasOne(db.CVUser, {
-        foreignKey: userForeignKey
+
+    db.User.hasMany(db.CV, {
+        foreignKey: 'userId'
+    })
+
+    db.CV.hasOne(db.CVUser, {
+        foreignKey: cvForeignKey
     });
-    db.User.hasMany(db.CVEmployment, {
-        foreignKey: userForeignKey
+    db.CV.hasMany(db.CVEmployment, {
+        foreignKey: cvForeignKey
     });
-    db.User.hasMany(db.CVEducation, {
-        foreignKey: userForeignKey
+    db.CV.hasMany(db.CVEducation, {
+        foreignKey: cvForeignKey
     });
-    db.User.hasMany(db.CVSkill, {
-        foreignKey: userForeignKey
+    db.CV.hasMany(db.CVSkill, {
+        foreignKey: cvForeignKey
     });
-    db.User.hasMany(db.CVLink, {
-        foreignKey: userForeignKey
+    db.CV.hasMany(db.CVLink, {
+        foreignKey: cvForeignKey
     });
-    db.User.hasMany(db.CVLanguage, {
-        foreignKey: userForeignKey
+    db.CV.hasMany(db.CVLanguage, {
+        foreignKey: cvForeignKey
     });
 
     await sequelize.sync();

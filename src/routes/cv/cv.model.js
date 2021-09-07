@@ -9,23 +9,15 @@ function model(sequelize) {
             autoIncrement: true,
             primaryKey: true
         },
-        cvId: {
+        userId: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        url: {
-            type: DataTypes.STRING,
-            allowNull: true
+        isPublished: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
         }
     };
-    const options = {
-        updatedAt: false,
-        createdAt: false
-    };
 
-    return sequelize.define('CVLink', attributes, options);
+    return sequelize.define('CV', attributes, {});
 }
