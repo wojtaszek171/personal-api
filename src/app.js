@@ -127,7 +127,7 @@ const readWeather = async () => {
         try {
             hourlyRes = await weatherService.getByName('hourly');
             if (hourlyRes.value) {
-                savedHours = JSON.parse(hourlyRes.value).filter((hour => hour.dt*1000 > storeAfterTimestamp))
+                savedHours = hourlyRes.value.filter((hour => hour.dt*1000 > storeAfterTimestamp))
             }
         } catch (e) {
             console.log('No hourly weather');
@@ -165,16 +165,6 @@ const readWeather = async () => {
     } catch (e) {
         console.log(e);
     }
-}
-
-const startStream = () => {
-    const { exec } = require("child_process");
-
-    exec('sudo raspivid --nopreview -o - -t 0 -w 960 -h 720 -fps 25 -b 4000000 -g 50  | ffmpeg -re -f h264 -i - -vcodec copy -g 50 -strict experimental -f flv -metadata streamName=myStream rtmp://pwojtaszko.ddns.net/show/stream', (err, stdout, stderr) => {
-        if (err) {
-            console.error(err)
-        }
-    });
 }
 
 const main = () => {
