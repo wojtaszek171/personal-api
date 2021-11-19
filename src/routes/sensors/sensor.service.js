@@ -2,7 +2,7 @@ const db = require('_helpers/db');
 
 module.exports = {
     getAll,
-    getByName,
+    getByKey,
     set,
     update,
     delete: _delete
@@ -13,37 +13,37 @@ async function getAll() {
 }
 
 
-async function getByName(name) {
-    const sensor = await db.Sensor.findOne({ where: { name } });
+async function getByKey(key) {
+    const sensor = await db.Sensor.findOne({ where: { key } });
     if (!sensor) throw 'Sensor not found';
     return sensor;
 }
 
 async function set(params) {
-    if (await db.Sensor.findOne({ where: { name: params.name } })) {
-        update(params.name, params);
+    if (await db.Sensor.findOne({ where: { key: params.key } })) {
+        update(params.key, params);
     } else {
         await db.Sensor.create(params);
     }
 }
 
-async function update(name, params) {
-    const sensor = await getSensor(name);
+async function update(key, params) {
+    const sensor = await getSensor(key);
 
     // copy params to sensor and save
     Object.assign(sensor, params);
     await sensor.save();
 }
 
-async function _delete(name) {
-    const sensor = await getSensor(name);
+async function _delete(key) {
+    const sensor = await getSensor(key);
     await sensor.destroy();
 }
 
 // helper functions
 
-async function getSensor(name) {
-    const sensor = await db.Sensor.findByPk(name);
+async function getSensor(key) {
+    const sensor = await db.Sensor.findByPk(key);
     if (!sensor) throw 'Sensor not found';
     return sensor;
 }

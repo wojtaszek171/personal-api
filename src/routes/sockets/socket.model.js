@@ -9,6 +9,11 @@ function model(sequelize) {
             allowNull: false,
             primaryKey: true
         },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            notEmpty: false
+        },
         start: {
             type: DataTypes.STRING,
             allowNull: true,

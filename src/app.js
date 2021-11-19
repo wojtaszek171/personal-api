@@ -27,6 +27,7 @@ app.use('/sensors', require('./routes/sensors/sensors.controller'));
 app.use('/sockets', require('./routes/sockets/sockets.controller'));
 app.use('/weather', require('./routes/weather/weather.controller'));
 app.use('/settings', require('./routes/settings/settings.controller'));
+app.use('/lists', require('./routes/lists/list.controller'));
 
 app.use('/cv', require('./routes/cv/cv.controller'));
 app.use('/cvuser', require('./routes/cv/user/user.controller'));

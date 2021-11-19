@@ -4,7 +4,8 @@ module.exports = model;
 
 function model(sequelize) {
     const attributes = {
-        name: { type: DataTypes.STRING, allowNull: false, primaryKey: true },
+        key: { type: DataTypes.STRING, allowNull: false, primaryKey: true },
+        name: { type: DataTypes.STRING, allowNull: true, notEmpty: false },
         value: { type: DataTypes.FLOAT, allowNull: true }
     };
     const options = {};

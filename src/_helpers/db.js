@@ -22,6 +22,7 @@ async function initialize() {
     db.Weather = require('../routes/weather/weather.model')(sequelize);
     db.Settings = require('../routes/settings/settings.model')(sequelize);
     db.Strings = require('../routes/strings/strings.model')(sequelize);
+    db.Lists = require('../routes/lists/list.model')(sequelize);
 
     db.CV = require('../routes/cv/cv.model')(sequelize);
     db.CVUser = require('../routes/cv/user/user.model')(sequelize);
@@ -36,6 +37,9 @@ async function initialize() {
         allowNull: false
     };
 
+    db.User.hasMany(db.Lists, {
+        foreignKey: 'userId'
+    })
     db.User.hasMany(db.CV, {
         foreignKey: 'userId'
     })
