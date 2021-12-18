@@ -8,6 +8,8 @@ const userService = require('./user.service');
 // routes
 router.post('/authenticate', authenticateSchema, authenticate);
 router.post('/register', authorize(), registerSchema, register);
+router.get('/validateConfig', isAdminCreated);
+router.post('/configureAdmin', registerSchema, registerAdmin);
 router.get('/', authorize(), getAll);
 router.get('/current', authorize(), getCurrent);
 router.get('/:id', authorize(), getById);
@@ -33,6 +35,11 @@ function authenticate(req, res, next) {
         .catch(next);
 }
 
+function isAdminCreated(req, res, next) {
+    userService.getAll()
+        .then(users => res.json(!!users.length));
+}
+
 function registerSchema(req, res, next) {
     const schema = Joi.object({
         firstName: Joi.string().required(),
@@ -47,6 +54,20 @@ function register(req, res, next) {
     userService.create(req.body)
         .then(() => res.json({ message: 'Registration successful' }))
         .catch(next);
+}
+
+function registerAdmin(req, res, next) {
+    userService.getAll()
+        .then(users => {
+            console.log(users);
+            if (!users.length) {
+                userService.create(req.body)
+                    .then(() => res.json({ message: 'Registration admin successful' }))
+                    .catch(next);
+            } else {
+                return res.json({ message: 'There is already exisitng admin' });
+            }
+        }).catch(next);
 }
 
 function getAll(req, res, next) {

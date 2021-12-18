@@ -37,45 +37,6 @@ app.use('/cvskills', require('./routes/cv/skill/skill.controller'));
 app.use('/cvlinks', require('./routes/cv/link/link.controller'));
 app.use('/cvlanguages', require('./routes/cv/language/language.controller'));
 
-const validateAdmin = async () => {
-    const usersArray = await userService.getAll();
-
-    if (!usersArray.length) {
-        const registerProps = [
-            {
-                name: 'firstName'
-            },
-            {
-                name: 'lastName'
-            },
-            {
-                name: 'username',
-            },
-            {
-                name: 'password',
-                hidden: true
-            }
-        ];
-
-        prompt.start();
-    
-        prompt.get(registerProps, function (err, result) {
-            if (err) { return onErr(err); }
-            userService.create({
-                firstName: result.firstName,
-                lastName: result.lastName,
-                username: result.username,
-                password: result.password
-            });
-        });
-    
-        function onErr(err) {
-            console.log(err);
-            return 1;
-        }
-    }    
-}
-
 // openweathermap reading
 const readWeather = async () => {
     let lat;
@@ -169,8 +130,6 @@ const readWeather = async () => {
 }
 
 const main = () => {
-    validateAdmin();
-
     readWeather();
     setInterval(() => {
         readWeather();

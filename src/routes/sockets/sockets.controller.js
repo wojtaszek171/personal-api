@@ -19,6 +19,7 @@ function setSchema(req, res, next) {
         enabled: Joi.bool(),
         start: Joi.string().allow(''),
         stop: Joi.string().allow(''),
+        lightModes: Joi.string().allow(''),
         dateUpdated: Joi.date()
     });
     validateRequest(req, next, schema);

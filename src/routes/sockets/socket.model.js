@@ -26,6 +26,18 @@ function model(sequelize) {
             defaultValue: "",
             notEmpty: false
         },
+        stop: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            defaultValue: "",
+            notEmpty: false
+        },
+        lightModes: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            defaultValue: "",
+            notEmpty: false
+        },
         enabled: {
             type: DataTypes.BOOLEAN,
             allowNull: true
