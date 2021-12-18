@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "deploy-local": "scp -r ./src/* pwojtaszko@192.168.1.27:/var/www/api",
-    "deploy": "scp -r ./src/* pwojtaszko@pwojtaszko.ddns.net:/var/www/api"
+    "deploy-local": "scp -r ./* pwojtaszko@192.168.1.27:/var/www/api",
+    "deploy": "scp -r ./* pwojtaszko@pwojtaszko.ddns.net:/var/www/api"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -1,5 +1,5 @@
 var indexRouter = require('./routes/index');
-const config = require('./config.json');
+const config = require('./config');
 const fetch = require("node-fetch");
 const cookieParser = require("cookie-parser");
 
