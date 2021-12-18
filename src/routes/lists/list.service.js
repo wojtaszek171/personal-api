@@ -1,4 +1,4 @@
-const db = require('_helpers/db');
+const db = require('src/_helpers/db');
 const { Op } = require("sequelize");
 
 module.exports = {

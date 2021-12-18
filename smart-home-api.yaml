@@ -1,0 +1,127 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: mysql-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: cinder-high-speed # CHANGE HERE
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+spec:
+  storageClassName: cinder-high-speed # CHANGE HERE
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  type: NodePort
+  ports:
+    - port: 3306
+      targetPort: 3306
+      nodePort: 31306 # exposed port we can communicate to
+  selector:
+    app: mysql
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - image: mysql:5.7
+          name: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: # mysql password
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: smart-home-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: smart-home-api
+  template:
+    metadata:
+      labels:
+        app: smart-home-api
+    spec:
+      containers:
+        - name: smart-home-api
+          image: localhost:5000/smart-home-api
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+          - name: DB_HOST
+            value: mysql
+          - name: DB_PORT
+            value: "3306"
+          - name: DB_USER
+            value: root
+          - name: DB_PASSWORD
+            value: # db password
+          - name: DB_NAME
+            value: # db name
+          - name: SECRET
+            value: # db secret
+          - name: WEATHER_API
+            value: # openweathermap api key
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smart-home-api
+spec:
+  type: NodePort
+  ports:
+    - port: 8393
+      targetPort: 8393
+      protocol: TCP
+      nodePort: 32000
+  selector:
+    app: smart-home-api

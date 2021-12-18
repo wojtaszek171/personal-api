@@ -2,6 +2,7 @@ var indexRouter = require('./routes/index');
 const config = require('./config');
 const fetch = require("node-fetch");
 const cookieParser = require("cookie-parser");
+require('dotenv').config();
 
 require('rootpath')();
 
@@ -9,7 +10,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const errorHandler = require('_middleware/error-handler');
+const errorHandler = require('./_middleware/error-handler');
 const weatherService = require('./routes/weather/weather.service');
 const settingsService = require('./routes/settings/settings.service');
 const userService = require('./routes/users/user.service');
