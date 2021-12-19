@@ -13,8 +13,6 @@ const bodyParser = require('body-parser');
 const errorHandler = require('./_middleware/error-handler');
 const weatherService = require('./routes/weather/weather.service');
 const settingsService = require('./routes/settings/settings.service');
-const userService = require('./routes/users/user.service');
-const prompt = require('prompt');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
