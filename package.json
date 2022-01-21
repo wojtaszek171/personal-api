@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node src/app.js",
-    "deploy-local": "scp -r ./* pwojtaszko@192.168.1.27:/var/www/api",
-    "deploy": "scp -r ./* pwojtaszko@pwojtaszko.ddns.net:/var/www/api"
+    "deploy-local": "scp -r ./* pwojtaszko@192.168.1.41:/media/pwojtaszko/DATA_STORAGE/smart_home/api",
+    "deploy": "scp -r ./* pwojtaszko@pwojtaszko.ddns.net:/media/pwojtaszko/DATA_STORAGE/smart_home/api"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

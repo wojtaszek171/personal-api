@@ -38,7 +38,7 @@ function setSchema(req, res, next) {
 
 function set(req, res, next) {
     cvService.set(req.body)
-        .then(() => res.json({ message: 'Successfully added cv' }))
+        .then((cv) => res.json(cv))
         .catch(next);
 }
 

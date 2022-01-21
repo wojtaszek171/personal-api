@@ -35,7 +35,11 @@ async function getById(id) {
 }
 
 async function set(params) {
-    await db.CV.create(params);
+    const { id } = await db.CV.create(params);
+
+    return {
+        id
+    };
 }
 
 async function update(id, params) {
