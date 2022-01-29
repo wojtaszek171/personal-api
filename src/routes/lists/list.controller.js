@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Joi = require('joi');
 const validateRequest = require('src/_middleware/validate-request');
-const authorize = require('src/_middleware/authorize')
+const authorize = require('src/_middleware/authorize');
 const listService = require('./list.service');
 
 // routes
@@ -16,7 +16,7 @@ router.delete('/:id', authorize(), _delete);
 module.exports = router;
 
 function getAllOwned(req, res, next) {
-    listService.getAllOwned(req.user.id)
+    listService.getAllOwned(req.user?.id)
         .then(lists => res.json(lists))
         .catch(next);
 }
@@ -35,7 +35,7 @@ function setSchema(req, res, next) {
 
 function set(req, res, next) {
     listService.set({
-        userId: req.user.id,
+        userId: req.user?.id,
         ...req.body
     })
         .then(() => res.json({ message: 'Successfully added list' }))

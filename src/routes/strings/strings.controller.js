@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Joi = require('joi');
 const validateRequest = require('src/_middleware/validate-request');
-const authorize = require('src/_middleware/authorize')
+const authorize = require('src/_middleware/authorize');
 const stringsService = require('./strings.service');
 const translationModel = require('./translationModel');
 

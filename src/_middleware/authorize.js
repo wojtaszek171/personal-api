@@ -4,23 +4,25 @@ const db = require('src/_helpers/db');
 
 module.exports = authorize;
 
-function authorize() {
+function authorize(noThrowError = false) {
     return [
-        // authenticate JWT token and attach decoded token to request as req.user
-        jwt({ secret: config.secret, algorithms: ['HS256'] }),
+        jwt({ secret: config.secret, algorithms: ['HS256'], credentialsRequired: !noThrowError }),
 
-        // attach full user record to request object
         async (req, res, next) => {
-            // get user with id from token 'sub' (subject) property
+            if (!req.user && noThrowError) {
+                return next();
+            }
+
             const user = await db.User.findByPk(req.user.sub);
 
-            // check user still exists
-            if (!user)
+            if (!user) {
+                user = false;
                 return res.status(401).json({ message: 'Unauthorized' });
+            }
 
-            // authorization successful
             req.user = user.get();
             next();
         }
     ];
 }
+

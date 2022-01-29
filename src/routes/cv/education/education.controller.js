@@ -1,22 +1,23 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams: true}); // child of CV
 const Joi = require('joi');
 const validateRequest = require('src/_middleware/validate-request');
-const authorize = require('src/_middleware/authorize')
+const authorize = require('src/_middleware/authorize');
 const educationService = require('./education.service');
 const translationModel = require('../../strings/translationModel');
 
 // routes
-router.get('/', getAll);
+router.get('/', authorize(true), getAll);
 router.post('/set', authorize(), setSchema, set);
-router.get('/:id', getById);
+router.get('/:id', authorize(true), getById);
 router.put('/:id', authorize(), updateSchema, update);
 router.delete('/:id', authorize(), _delete);
 
 module.exports = router;
 
 function getAll(req, res, next) {
-    educationService.getAll()
+    const { params: { cvId }, user } = req;
+    educationService.getAll(user?.id, cvId)
         .then(education => res.json(education))
         .catch(next);
 }
@@ -35,13 +36,16 @@ function setSchema(req, res, next) {
 }
 
 function set(req, res, next) {
-    educationService.set(req.body)
+    const { params: { cvId }, body, user } = req;
+
+    educationService.set(user?.id, cvId, body)
         .then(() => res.json({ message: 'Successfully added education value' }))
         .catch(next);
 }
 
 function getById(req, res, next) {
-    educationService.getById(req.params.id)
+    const { params: { id, cvId }, user } = req;
+    educationService.getById(user?.id, id, cvId)
         .then(education => res.json(education))
         .catch(next);
 }
@@ -59,13 +63,15 @@ function updateSchema(req, res, next) {
 }
 
 function update(req, res, next) {
-    educationService.update(req.params.id, req.body)
+    const { params: { id, cvId }, body, user } = req;
+    educationService.update(user?.id, id, cvId, body)
         .then(education => res.json(education))
         .catch(next);
 }
 
 function _delete(req, res, next) {
-    educationService.delete(req.params.id)
+    const { params: { id, cvId }, user } = req;
+    educationService.delete(user?.id, id, cvId)
         .then(() => res.json({ message: 'Education deleted successfully' }))
         .catch(next);
 }

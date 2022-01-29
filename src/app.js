@@ -30,8 +30,6 @@ app.use('/lists', require('./routes/lists/list.controller'));
 
 app.use('/cv', require('./routes/cv/cv.controller'));
 app.use('/cvuser', require('./routes/cv/user/user.controller'));
-app.use('/cvemployment', require('./routes/cv/employment/employment.controller'));
-app.use('/cveducation', require('./routes/cv/education/education.controller'));
 app.use('/cvskills', require('./routes/cv/skill/skill.controller'));
 app.use('/cvlinks', require('./routes/cv/link/link.controller'));
 app.use('/cvlanguages', require('./routes/cv/language/language.controller'));

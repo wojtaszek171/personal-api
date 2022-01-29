@@ -4,16 +4,25 @@ const { Op } = require("sequelize");
 module.exports = {
     getAll,
     getAllOwned,
-    getById,
+    getById: getCV,
     set,
     update,
-    delete: _delete
+    delete: _delete,
+    validateOwnership
 };
 
-async function getAll() {
+async function getAll(userId) {
+    const orParams = [{
+        isPublished: true
+    }];
+
+    if (userId) {
+        orParams.push({ userId });
+    }
+
     return await db.CV.findAll({
         where: {
-            isPublished: true
+            [Op.or]: orParams
         }
     });
 }
@@ -21,17 +30,9 @@ async function getAll() {
 async function getAllOwned(userId) {
     return await db.CV.findAll({
         where: {
-            [Op.or]: [
-                { userId: userId }
-            ]
+            userId
         }
     });
-}
-
-async function getById(id) {
-    const cv = await getCV(id);
-
-    return cv;
 }
 
 async function set(params) {
@@ -43,19 +44,51 @@ async function set(params) {
 }
 
 async function update(id, params) {
-    const cv = await getCV(id);
+    const cv = await getOwnedCV(id);
 
     Object.assign(cv, params);
     await cv.save();
 }
 
-async function getCV(id) {
-    const cv = await db.CV.findByPk(id);
+async function getOwnedCV(id, userId) {
+    const cv = await db.CV.findOne({
+        where: {
+            id,
+            userId
+        }
+    });
+    if (!cv) throw `You don't own this CV`;
+    return cv;
+}
+
+async function validateOwnership(id, userId = undefined) {
+    try {
+        await getCV(id, userId);
+    } catch (e) {
+        throw `CV not found or you don't have privileges to see it`;
+    }
+}
+
+async function getCV(id, userId = undefined) {
+    const orParams = [{
+        isPublished: true
+    }];
+
+    if (userId) {
+        orParams.push({ userId });
+    }
+
+    const cv = await db.CV.findOne({
+        where: {
+            id,
+            [Op.or]: orParams
+        }
+    });
     if (!cv) throw 'CV not found';
     return cv;
 }
 
 async function _delete(id) {
-    const cv = await getCV(id);
+    const cv = await getOwnedCV(id);
     await cv.destroy();
 }
