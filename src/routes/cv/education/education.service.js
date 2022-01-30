@@ -44,8 +44,6 @@ async function set(userId, cvId, params) {
 }
 
 async function update(userId, id, cvId, params) {
-    await cvService.validateOwnership(cvId, userId);
-
     const { school, degree, location, details } = params;
     const education = await getEducation(userId, id, cvId);
     const { schoolId, degreeId, locationId, detailsId } = education.get({ plain: true });
@@ -62,13 +60,11 @@ async function getEducation(userId, id, cvId) {
     await cvService.validateOwnership(cvId, userId);
 
     const education = await db.CVEducation.findOne({ where: { id, cvId }});
-    if (!education) throw 'CVEducation not found';
+    if (!education) throw 'Education not found';
     return education;
 }
 
 async function _delete(userId, id, cvId) {
-    await cvService.validateOwnership(cvId, userId);
-
     const education = await getEducation(userId, id, cvId);
     const { schoolId, degreeId, locationId, detailsId } = education.get({ plain: true });
     await db.Strings.destroy({ where: { id: schoolId }});

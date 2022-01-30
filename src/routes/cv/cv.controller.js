@@ -6,6 +6,10 @@ const authorize = require('src/_middleware/authorize');
 const cvService = require('./cv.service');
 const cvEmploymentRouter = require('./employment/employment.controller');
 const cvEducationRouter = require('./education/education.controller');
+const cvLanguagesRouter = require('./language/language.controller');
+const cvLinksRouter = require('./link/link.controller');
+const cvSkillsRouter = require('./skill/skill.controller');
+const cvUsersRouter = require('./user/user.controller');
 
 // routes
 router.get('/', authorize(true), getAll);
@@ -15,8 +19,12 @@ router.get('/:cvId', getById);
 router.put('/:cvId', authorize(), updateSchema, update);
 router.delete('/:cvId', authorize(), _delete);
 
-router.use('/:cvId/education', cvEducationRouter)
-router.use('/:cvId/employment', cvEmploymentRouter)
+router.use('/:cvId/education', cvEducationRouter);
+router.use('/:cvId/employment', cvEmploymentRouter);
+router.use('/:cvId/languages', cvLanguagesRouter);
+router.use('/:cvId/links', cvLinksRouter);
+router.use('/:cvId/skills', cvSkillsRouter);
+router.use('/:cvId/user', cvUsersRouter);
 
 module.exports = router;
 

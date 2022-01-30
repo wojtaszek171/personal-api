@@ -1,4 +1,5 @@
 const db = require('src/_helpers/db');
+const cvService = require('../cv.service');
 
 module.exports = {
     getAll,
@@ -8,33 +9,37 @@ module.exports = {
     delete: _delete
 };
 
-async function getAll() {
-    return await db.CVSkill.findAll();
+async function getAll(userId, cvId) {
+    await cvService.validateOwnership(cvId, userId);
+
+    return await db.CVSkill.findAll({
+        where: { cvId }
+    });
 }
 
-async function getById(id) {
-    const skill = await db.CVSkill.findByPk(id);
+async function getById(userId, id, cvId) {
+    const skill = await getSkill(userId, id, cvId);
 
-    if (!skill) throw 'CVSkill not found';
     return skill;
 }
 
-async function set(params) {
+async function set(userId, cvId, params) {
+    await cvService.validateOwnership(cvId, userId);
+
     const { name, details } = params;
     const nameString = await db.Strings.create(name);
     const detailsString = await db.Strings.create(details);
 
     const skill = await db.CVSkill.create({
         ...params,
-        name: undefined,
-        details: undefined
+        cvId
     });
 
     skill.setName(nameString);
     skill.setDetails(detailsString);
 }
 
-async function update(id, params) {
+async function update(userId, id, cvId, params) {
     const { name, details } = params;
     const skill = await getSkill(id);
     const { nameId, detailsId } = skill.get({ plain: true });
@@ -45,13 +50,15 @@ async function update(id, params) {
     await skill.save();
 }
 
-async function getSkill(id) {
-    const skill = await db.CVSkill.findByPk(id);
-    if (!skill) throw 'CVSkill not found';
+async function getSkill(userId, id, cvId) {
+    await cvService.validateOwnership(cvId, userId);
+
+    const skill = await db.CVSkill.findOne({ where: { id, cvId }});
+    if (!skill) throw 'Skill not found';
     return skill;
 }
 
-async function _delete(id) {
+async function _delete(userId, id, cvId) {
     const skill = await getSkill(id);
     const { nameId, detailsId } = skill.get({ plain: true });
     await db.Strings.destroy({ where: { id: nameId }});

@@ -29,10 +29,6 @@ app.use('/settings', require('./routes/settings/settings.controller'));
 app.use('/lists', require('./routes/lists/list.controller'));
 
 app.use('/cv', require('./routes/cv/cv.controller'));
-app.use('/cvuser', require('./routes/cv/user/user.controller'));
-app.use('/cvskills', require('./routes/cv/skill/skill.controller'));
-app.use('/cvlinks', require('./routes/cv/link/link.controller'));
-app.use('/cvlanguages', require('./routes/cv/language/language.controller'));
 
 // openweathermap reading
 const readWeather = async () => {

@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const Joi = require('joi');
 const validateRequest = require('src/_middleware/validate-request');
 const authorize = require('src/_middleware/authorize');
@@ -7,16 +7,17 @@ const employmentService = require('./employment.service');
 const translationModel = require('../../strings/translationModel');
 
 // routes
-router.get('/', getAll);
+router.get('/', authorize(true), getAll);
 router.post('/set', authorize(), setSchema, set);
-router.get('/:id', getById);
+router.get('/:id', authorize(true), getById);
 router.put('/:id', authorize(), updateSchema, update);
 router.delete('/:id', authorize(), _delete);
 
 module.exports = router;
 
 function getAll(req, res, next) {
-    employmentService.getAll()
+    const { params: { cvId }, user } = req;
+    employmentService.getAll(user?.id, cvId)
         .then(employments => res.json(employments))
         .catch(next);
 }
@@ -35,13 +36,16 @@ function setSchema(req, res, next) {
 }
 
 function set(req, res, next) {
-    employmentService.set(req.body)
+    const { params: { cvId }, body, user } = req;
+
+    employmentService.set(user?.id, cvId, body)
         .then(() => res.json({ message: 'Successfully added employment value' }))
         .catch(next);
 }
 
 function getById(req, res, next) {
-    employmentService.getById(req.params.id)
+    const { params: { id, cvId }, user } = req;
+    employmentService.getById(user?.id, id, cvId)
         .then(employment => res.json(employment))
         .catch(next);
 }
@@ -59,13 +63,15 @@ function updateSchema(req, res, next) {
 }
 
 function update(req, res, next) {
-    employmentService.update(req.params.id, req.body)
+    const { params: { id, cvId }, body, user } = req;
+    employmentService.update(user?.id, id, cvId, body)
         .then(employment => res.json(employment))
         .catch(next);
 }
 
 function _delete(req, res, next) {
-    employmentService.delete(req.params.id)
+    const { params: { id, cvId }, user } = req;
+    employmentService.delete(user?.id, id, cvId)
         .then(() => res.json({ message: 'Employment deleted successfully' }))
         .catch(next);
 }

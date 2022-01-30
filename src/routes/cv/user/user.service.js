@@ -1,4 +1,5 @@
 const db = require('src/_helpers/db');
+const cvService = require('../cv.service');
 
 module.exports = {
     getAll,
@@ -8,32 +9,41 @@ module.exports = {
     delete: _delete
 };
 
-async function getAll() {
-    return await db.CVUser.findAll();
+async function getAll(userId, cvId) {
+    await cvService.validateOwnership(cvId, userId);
+
+    return await db.CVUser.findAll({
+        where: { cvId }
+    });
 }
 
-async function getById(id) {
-    const user = await getUser(id);
+async function getById(userId, id, cvId) {
+    const user = await getUser(userId, id, cvId);
 
     return user;
 }
 
-async function set(params) {
+async function set(userId, cvId, params) {
+    await cvService.validateOwnership(cvId, userId);
+
     const { address, position, presentation } = params;
     const addressString = await db.Strings.create(address);
     const positionString = await db.Strings.create(position);
     const presentationString = await db.Strings.create(presentation);
 
-    const user = await db.CVUser.create(params);
+    const user = await db.CVUser.create({
+        ...params,
+        cvId
+    });
 
     user.setAddress(addressString);
     user.setPosition(positionString);
     user.setPresentation(presentationString);
 }
 
-async function update(id, params) {
+async function update(userId, id, cvId, params) {
     const { address, position, presentation } = params;
-    const user = await getUser(id);
+    const user = await getUser(userId, id, cvId);
     const { addressId, positionId, presentationId } = user.get({ plain: true });
     await db.Strings.update(address, { where: { id: addressId }});
     await db.Strings.update(position, { where: { id: positionId }});
@@ -43,14 +53,16 @@ async function update(id, params) {
     await user.save();
 }
 
-async function getUser(id) {
-    const user = await db.CVUser.findByPk(id);
+async function getUser(userId, id, cvId) {
+    await cvService.validateOwnership(cvId, userId);
+
+    const user = await db.CVUser.findOne({ where: { id, cvId }});
     if (!user) throw 'CVUser not found';
     return user;
 }
 
-async function _delete(id) {
-    const user = await getUser(id);
+async function _delete(userId, id, cvId) {
+    const user = await getUser(userId, id, cvId);
     const { addressId, positionId, presentationId } = user.get({ plain: true });
     await db.Strings.destroy({ where: { id: addressId }});
     await db.Strings.destroy({ where: { id: positionId }});
