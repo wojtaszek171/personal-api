@@ -10,7 +10,6 @@ async function initialize() {
     // create db if it doesn't already exist
     const { host, user, password, port, database } = config.database;
 
-    console.log(config.database);
     const connection = await mysql.createConnection({ host, user, port, password });
     await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
 
@@ -49,6 +48,7 @@ async function initialize() {
     db.CV.hasOne(db.CVUser, {
         foreignKey: cvForeignKey
     });
+    // db.CVUser.belongsTo(db.CV, { as: 'userDetails', sourceKey: 'cvId', foreignKey: 'id' });
     db.CV.hasMany(db.CVEmployment, {
         foreignKey: cvForeignKey
     });

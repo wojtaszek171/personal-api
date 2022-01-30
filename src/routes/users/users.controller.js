@@ -59,7 +59,6 @@ function register(req, res, next) {
 function registerAdmin(req, res, next) {
     userService.getAll()
         .then(users => {
-            console.log(users);
             if (!users.length) {
                 userService.create(req.body)
                     .then(() => res.json({ message: 'Registration admin successful' }))

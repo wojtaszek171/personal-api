@@ -7,18 +7,16 @@ const userService = require('./user.service');
 const translationModel = require('../../strings/translationModel');
 
 // routes
-router.get('/', authorize(true), getAll);
+router.get('/', authorize(true), getUser);
 router.post('/set', authorize(), setSchema, set);
-router.get('/:id', authorize(true), getById);
-router.put('/:id', authorize(), updateSchema, update);
-router.delete('/:id', authorize(), _delete);
-
+router.put('/', authorize(), updateSchema, update);
+router.delete('/', authorize(), _delete);
 
 module.exports = router;
 
-function getAll(req, res, next) {
+function getUser(req, res, next) {
     const { params: { cvId }, user } = req;
-    userService.getAll(user?.id, cvId)
+    userService.getUser(user?.id, cvId)
         .then(users => res.json(users))
         .catch(next);
 }
@@ -40,16 +38,18 @@ function setSchema(req, res, next) {
 function set(req, res, next) {
     const { params: { cvId }, body, user } = req;
 
-    userService.set(user?.id, cvId, body)
-        .then(() => res.json({ message: 'Successfully added user value' }))
-        .catch(next);
-}
-
-function getById(req, res, next) {
-    const { params: { id, cvId }, user } = req;
-    userService.getById(user?.id, id, cvId)
-        .then(user => res.json(user))
-        .catch(next);
+    userService.getUser(user?.id, cvId)
+        .then(users => {
+            if (users) {
+                res.json({ message: 'User value already exist' })
+                next();
+            }
+        })
+        .catch((e) => {
+            userService.set(user?.id, cvId, body)
+            .then(() => res.json({ message: 'Successfully added user value' }))
+            .catch(next);
+        });
 }
 
 function updateSchema(req, res, next) {
@@ -67,15 +67,15 @@ function updateSchema(req, res, next) {
 }
 
 function update(req, res, next) {
-    const { params: { id, cvId }, body, user } = req;
-    userService.update(user?.id, id, cvId, body)
+    const { params: { cvId }, body, user } = req;
+    userService.update(user?.id, cvId, body)
         .then(user => res.json(user))
         .catch(next);
 }
 
 function _delete(req, res, next) {
-    const { params: { id, cvId }, user } = req;
-    userService.delete(user?.id, id, cvId)
+    const { params: { cvId }, user } = req;
+    userService.delete(user?.id, cvId)
         .then(() => res.json({ message: 'User deleted successfully' }))
         .catch(next);
 }

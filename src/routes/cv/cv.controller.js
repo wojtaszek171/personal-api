@@ -75,7 +75,7 @@ function update(req, res, next) {
 }
 
 function _delete(req, res, next) {
-    cvService.delete(req.params.cvId)
+    cvService.delete(req.params.cvId, req.user?.id)
         .then(() => res.json({ message: 'CV deleted successfully' }))
         .catch(next);
 }

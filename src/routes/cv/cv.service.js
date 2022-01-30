@@ -88,7 +88,7 @@ async function getCV(id, userId = undefined) {
     return cv;
 }
 
-async function _delete(id) {
-    const cv = await getOwnedCV(id);
+async function _delete(id, userId) {
+    const cv = await getOwnedCV(id, userId);
     await cv.destroy();
 }
