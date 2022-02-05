@@ -15,7 +15,7 @@ const cvUsersRouter = require('./user/user.controller');
 router.get('/', authorize(true), getAll);
 router.get('/owned', authorize(), getAllOwned);
 router.post('/set', authorize(), setSchema, set);
-router.get('/:cvId', getById);
+router.get('/:cvId', authorize(true), getById);
 router.put('/:cvId', authorize(), updateSchema, update);
 router.delete('/:cvId', authorize(), _delete);
 
@@ -42,14 +42,16 @@ function getAllOwned(req, res, next) {
 
 function setSchema(req, res, next) {
     const schema = Joi.object({
-        userId: Joi.number().required(),
         isPublished: Joi.boolean(),
     });
     validateRequest(req, next, schema);
 }
 
 function set(req, res, next) {
-    cvService.set(req.body)
+    cvService.set({
+        ...req.body,
+        userId: req.user?.id
+    })
         .then((cv) => res.json(cv))
         .catch(next);
 }

@@ -1,6 +1,9 @@
 const config = require('../config.js');
 const mysql = require('mysql2/promise');
 const { Sequelize } = require('sequelize');
+const cls = require('cls-hooked');
+const namespace = cls.createNamespace('smart-home-api-namespace');
+Sequelize.useCLS(namespace);
 
 module.exports = db = {};
 
@@ -16,6 +19,7 @@ async function initialize() {
     // connect to db
     const sequelize = new Sequelize(database, user, password, { dialect: 'mysql', port, host });
 
+    db.connection = sequelize;
     // init models and add them to the exported db object
     db.User = require('../routes/users/user.model')(sequelize);
     db.Sensor = require('../routes/sensors/sensor.model')(sequelize);
