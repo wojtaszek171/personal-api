@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
 module.exports = translationModel = Joi.object({
-    en_us: Joi.string(),
-    pl_pl: Joi.string()
+    'en-us': Joi.string(),
+    'pl-pl': Joi.string()
 });

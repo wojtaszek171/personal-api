@@ -9,11 +9,11 @@ function model(sequelize) {
             autoIncrement: true,
             primaryKey: true
         },
-        en_us: {
+        'en-us': {
             type: DataTypes.STRING,
             allowNull: true
         },
-        pl_pl: {
+        'pl-pl': {
             type: DataTypes.STRING,
             allowNull: true
         }
