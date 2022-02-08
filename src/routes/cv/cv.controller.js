@@ -10,6 +10,7 @@ const cvLanguagesRouter = require('./language/language.controller');
 const cvLinksRouter = require('./link/link.controller');
 const cvSkillsRouter = require('./skill/skill.controller');
 const cvUsersRouter = require('./user/user.controller');
+const userService = require('./user/user.service');
 
 // routes
 router.get('/', authorize(true), getAll);
@@ -52,7 +53,21 @@ function set(req, res, next) {
         ...req.body,
         userId: req.user?.id
     })
-        .then((cv) => res.json(cv))
+        .then((cv) =>
+            userService.set(
+                req.user.id,
+                cv.id,
+                {
+                    address: {},
+                    position: {},
+                    presentation: {}
+                }
+            )
+            .then(res.json(cv))
+            .catch(() => {
+                cvService.delete(cv.id, req.user.id)
+            })
+        )
         .catch(next);
 }
 

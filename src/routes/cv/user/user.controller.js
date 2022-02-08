@@ -8,9 +8,7 @@ const translationModel = require('../../strings/translationModel');
 
 // routes
 router.get('/', authorize(true), getUser);
-router.post('/set', authorize(), setSchema, set);
 router.put('/', authorize(), updateSchema, update);
-router.delete('/', authorize(), _delete);
 
 module.exports = router;
 
