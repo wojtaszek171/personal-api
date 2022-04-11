@@ -41,7 +41,7 @@ async function set(userId, cvId, params) {
 
 async function update(userId, id, cvId, params) {
     const { name, details } = params;
-    const skill = await getSkill(id);
+    const skill = await getSkill(userId, id, cvId);
     const { nameId, detailsId } = skill.get({ plain: true });
     await db.Strings.update(name, { where: { id: nameId }});
     await db.Strings.update(details, { where: { id: detailsId }});
@@ -59,7 +59,7 @@ async function getSkill(userId, id, cvId) {
 }
 
 async function _delete(userId, id, cvId) {
-    const skill = await getSkill(id);
+    const skill = await getSkill(userId, id, cvId);
     const { nameId, detailsId } = skill.get({ plain: true });
     await db.Strings.destroy({ where: { id: nameId }});
     await db.Strings.destroy({ where: { id: detailsId }});
